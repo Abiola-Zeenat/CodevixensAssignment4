@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MVCWeb.Migrations
 {
-    [DbContext(typeof(MVCWebDbContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     partial class MVCWebDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

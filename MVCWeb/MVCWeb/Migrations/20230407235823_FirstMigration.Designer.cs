@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MVCWeb.Migrations
 {
-    [DbContext(typeof(MVCWebDbContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     [Migration("20230407235823_FirstMigration")]
     partial class FirstMigration
     {

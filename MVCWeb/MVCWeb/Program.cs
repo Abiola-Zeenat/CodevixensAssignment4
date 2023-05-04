@@ -11,11 +11,11 @@ internal class Program
         // Add services to the container.
         builder.Services.AddControllersWithViews();
 
-        builder.Services.AddDbContext<MVCWebDbContext>(options =>
+        builder.Services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
         builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
-            .AddEntityFrameworkStores<MVCWebDbContext>();
+            .AddEntityFrameworkStores<ApplicationDbContext>();
 
 
         var app = builder.Build();
@@ -35,7 +35,7 @@ internal class Program
 
         app.UseAuthorization();
 
-        app.MapRazorPages();
+        //app.MapRazorPages();
 
         app.MapControllerRoute(
             name: "default",

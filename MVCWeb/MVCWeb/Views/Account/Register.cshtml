@@ -1,5 +1,5 @@
 ﻿@page
-@model RegisterModel
+@model MVCWeb.Models.MVCWebEntity
 @{
     ViewData["Title"] = "Register";
 }
@@ -13,44 +13,44 @@
                         <div class="card shadow-lg border-0 rounded-lg mt-5">
                             <div class="card-header"><h3 class="text-center font-weight-light my-4">Create Account</h3></div>
                             <div class="card-body">
-                                <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                                <form id="registerForm" method="post">
                                     <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
                                     <div class="row mb-3">
                                         <div class="col-md-6">
                                             <div class="form-floating mb-3 mb-md-0">
-                                                <input asp-for="Input.FirstName" class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" />
-                                                <label asp-for="Input.FirstName"></label>
-                                                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                                                <input asp-for="FirstName" class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" />
+                                                <label asp-for="FirstName"></label>
+                                                <span asp-validation-for="FirstName" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-floating">
-                                                <input asp-for="Input.LastName" class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" />
-                                                <label asp-for="Input.LastName"></label>
-                                                <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                                                <input asp-for="LastName" class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" />
+                                                <label asp-for="LastName"></label>
+                                                <span asp-validation-for="LastName" class="text-danger"></span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-floating mb-3">
 
-                                        <input asp-for="Input.Email" class="form-control" id="inputEmail" type="email" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-                                        <label asp-for="Input.Email">Email address</label>
-                                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                                        <input asp-for="Email" class="form-control" id="inputEmail" type="email" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                                        <label asp-for="Email">Email address</label>
+                                        <span asp-validation-for="Email" class="text-danger"></span>
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-md-6">
                                             <div class="form-floating mb-3 mb-md-0">
 
-                                                <input asp-for="Input.Password" autocomplete="new-password" aria-required="true" class="form-control" id="inputPassword" type="password" placeholder="Create a password" />
-                                                <label asp-for="Input.Password">Password</label>
-                                                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                                                <input asp-for="Password" autocomplete="new-password" aria-required="true" class="form-control" id="inputPassword" type="password" placeholder="Create a password" />
+                                                <label asp-for="Password">Password</label>
+                                                <span asp-validation-for="Password" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-floating mb-3 mb-md-0">
-                                                <input asp-for="Input.ConfirmPassword" class="form-control" id="inputPasswordConfirm" type="password" autocomplete="new-password" aria-required="true" placeholder="Confirm password" />
-                                                <label asp-for="Input.ConfirmPassword">Confirm Password</label>
-                                                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                                                <input asp-for="ConfirmPassword" class="form-control" id="inputPasswordConfirm" type="password" autocomplete="new-password" aria-required="true" placeholder="Confirm password" />
+                                                <label asp-for="ConfirmPassword">Confirm Password</label>
+                                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
 
                                             </div>
                                         </div>
@@ -63,7 +63,7 @@
                                 </form>
                             </div>
                             <div class="card-footer text-center py-3">
-                                <div class="small"><a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">Have an account? Go to login</a></div>
+                                <div class="small"><a asp-controller="Account" asp-action="Login">Have an account? Go to login</a></div>
                             </div>
                         </div>
                     </div>
