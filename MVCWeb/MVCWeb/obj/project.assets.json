@@ -11026,11 +11026,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\HP\\source\\repos\\MVCWeb\\MVCWeb\\MVCWeb.csproj",
+      "projectUniqueName": "C:\\Users\\HP\\Desktop\\codeVixens\\CodevixensAssignment4\\MVCWeb\\MVCWeb\\MVCWeb.csproj",
       "projectName": "MVCWeb",
-      "projectPath": "C:\\Users\\HP\\source\\repos\\MVCWeb\\MVCWeb\\MVCWeb.csproj",
+      "projectPath": "C:\\Users\\HP\\Desktop\\codeVixens\\CodevixensAssignment4\\MVCWeb\\MVCWeb\\MVCWeb.csproj",
       "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\HP\\source\\repos\\MVCWeb\\MVCWeb\\obj\\",
+      "outputPath": "C:\\Users\\HP\\Desktop\\codeVixens\\CodevixensAssignment4\\MVCWeb\\MVCWeb\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",

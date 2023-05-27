@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Web;
 using Microsoft.AspNetCore.Authorization;
 using MVCWeb.Models;
-
+using MVCWeb.Data;
 
 namespace MVCWeb.Controllers
 {
@@ -13,19 +13,12 @@ namespace MVCWeb.Controllers
     [Route("[controller]/[action]")]
     public class AccountController : Controller
     {
-        private readonly ILogger<AccountController> _logger;
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
-
-
-        public AccountController(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager,
-            ILogger<AccountController> logger)
+        private readonly ApplicationDbContext _db;
+       
+        public AccountController(ApplicationDbContext db)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _logger = logger;
+            _db = db;
+            
         }
         public IActionResult Index()
         {
@@ -43,39 +36,16 @@ namespace MVCWeb.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(MVCWebEntity user)
+        public IActionResult Register(MVCWebEntity user)
         {
             if (ModelState.IsValid)
             {
-                MVCWebEntity User = new MVCWebEntity {
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    Email = user.Email
-                };
-                IdentityResult result = await _userManager.CreateAsync(User, user.Password);
-                if (result.Succeeded)
-                {
-                    await _signInManager.SignInAsync(User, isPersistent: false);
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Data is not correct");
-                }
-
-                foreach (var error in result.Errors)
-                {
-                    if (error.Code == "InvalidUserName")
-                    {
-                        ModelState.AddModelError(string.Empty, "Username can only contain letters or digits.");
-                    }
-                    else
-                    {
-                        ModelState.AddModelError(string.Empty, error.Description);
-                    }
-                }
+                _db.MVCWeb.Add(user);
+                _db.SaveChanges(true);
+                ModelState.Clear();
+                return RedirectToAction("Index", "Home");
             }
-            // If we got this far, something failed, redisplay form
+            
             return View(user);
         }
         //Login get and post
@@ -90,34 +60,34 @@ namespace MVCWeb.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(MVCWebEntity user)
+        public IActionResult Login(string email, string password)
         {
             
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(user.Email, user.Password, user.RememberMe, lockoutOnFailure: false);
-                if (result.Succeeded)
+                var Loggedinuser = _db.MVCWeb.Single(u => u.Email == email && u.Password == password);
+                if (Loggedinuser != null)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return View(user);
+                    return View();
                 }
                
                 
             }
-            return View(user);
+            return View();
         }
 
         //logout 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Logout()
+        public IActionResult Logout()
         {
-            await _signInManager.SignOutAsync();
+          
             return RedirectToAction("Index", "Home");
         }
     }

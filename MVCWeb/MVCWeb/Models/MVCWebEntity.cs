@@ -1,14 +1,19 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MVCWeb.Models
 {
-    public class MVCWebEntity: IdentityUser
+    public class MVCWebEntity
     {
+        [Key]
+        public int Id { get; set; }
+
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
-        public override string? Email { get; set; }
+        public string? Email { get; set; }
 
         [Required]
         [Display(Name = "First Name")]
